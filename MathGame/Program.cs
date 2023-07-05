@@ -4,72 +4,66 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, \nPlease type your name:");
-            var name = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine($"Hello {name}. It's great, that you are working on your math skills!\n");
-            Console.WriteLine(@"What game would you like to try? Please select from down below:
+            Menu();
+
+            void Menu()
+            {
+                Console.WriteLine("Hello, \nPlease type your name:");
+                var name = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine($"Hello {name}. It's time to work on your math skills!\n");
+                Console.WriteLine(@"What do you want to practise? Please select from down below:
             A - Addition
             S - Substraction
             M - Multiplication
             D - Division
             Q - Quit program");
 
-            var gameSelected = Console.ReadLine();
+                var gameSelected = Console.ReadLine();
 
-            if (gameSelected.Trim().ToLower() == "a")
-            {
-                AdditionGame();
-            }
-            else if (gameSelected.Trim().ToLower() == "s")
-            {
-                SubstractionGame();
-            }
-            else if (gameSelected.Trim().ToLower() == "m")
-            {
-                MultiplicationGame();
-            }
-            else if (gameSelected.Trim().ToLower() == "d")
-            {
-                DivisionGame();
-            }
-            else if (gameSelected.Trim().ToLower() == "q")
-            {
-                QuitGame();
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Invalid input!");
-                Console.WriteLine(@"Please choose from the options presented below:
-                A - Addition
-                S - Substraction
-                M - Multiplication
-                D - Division
-                Q - Quit program");
+                switch (gameSelected.Trim().ToLower())
+                {
+                    case "a":
+                        AdditionGame("Addition game selected");
+                        break;
+                    case "s":
+                        SubstractionGame("Substraction game selected");
+                        break;
+                    case "m":
+                        MultiplicationGame("Multipication game selected");
+                        break;
+                    case "d":
+                        DivisionGame("Division game selected");
+                        break;
+                    case "q":
+                        QuitGame();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input!");
+                        break;
+                }
             }
 
-            
-
-            void AdditionGame()
+            void AdditionGame(string message)
             {
                 Console.Clear();
-                Console.WriteLine("Addition game selected");
+                Console.WriteLine(message);
             }
-            void SubstractionGame()
+            void SubstractionGame(string message)
             {
                 Console.Clear();
-                Console.WriteLine("Substraction game selected");
+                Console.WriteLine(message);
             }
-            void MultiplicationGame()
+            void MultiplicationGame(string message)
             {
                 Console.Clear();
-                Console.WriteLine("Multiplication game selected");
+                Console.WriteLine(message);
             }
-            void DivisionGame()
+            void DivisionGame(string message)
             {
                 Console.Clear();
-                Console.WriteLine("Division game selected");
+                Console.WriteLine(message);
             }
             void QuitGame()
             {
@@ -77,6 +71,7 @@
                 Console.WriteLine("Goodbye!");
                 Environment.Exit(1);
             }
+
         }
     }
 }
