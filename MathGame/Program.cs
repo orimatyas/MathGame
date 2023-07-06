@@ -7,6 +7,7 @@ namespace MathGame
         static void Main(string[] args)
         {
             var date = DateTime.Now;
+            List<string> games = new List<string>();
             string name = GetName();
 
             Menu(name);
@@ -21,41 +22,54 @@ namespace MathGame
             void Menu(string name)
             {
                 Console.WriteLine($"Hello {name}. Today it's {date}. It's time to work on your math skills!\n");
-                Console.WriteLine(@"What do you want to practice? Please select from down below:
-            A - Addition
-            S - Substraction
-            M - Multiplication
-            D - Division
-            Q - Quit program");
 
-                var gameSelected = Console.ReadLine();
+                bool isGameOn = true;
 
-                switch (gameSelected.Trim().ToLower())
+                do
                 {
-                    case "a":
-                        AdditionGame("Addition game");
-                        break;
-                    case "s":
-                        SubstractionGame("Substraction game");
-                        break;
-                    case "m":
-                        MultiplicationGame("Multipication game");
-                        break;
-                    case "d":
-                        DivisionGame("Division game");
-                        break;
-                    case "q":
-                        QuitGame();
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Invalid input!");
-                        break;
+                    Console.Clear();
+                    Console.WriteLine(@"What do you want to practice? Please select from down below:
+                    A - Addition
+                    S - Substraction
+                    M - Multiplication
+                    D - Division
+                    V - View games
+                    Q - Quit program");
+
+                    var gameSelected = Console.ReadLine();
+
+                    switch (gameSelected.Trim().ToLower())
+                    {
+                        case "a":
+                            AdditionGame("Addition game");
+                            break;
+                        case "s":
+                            SubstractionGame("Substraction game");
+                            break;
+                        case "m":
+                            MultiplicationGame("Multipication game");
+                            break;
+                        case "d":
+                            DivisionGame("Division game");
+                            break;
+                        case "v":
+                            GetGames();
+                            break;
+                        case "q":
+                            QuitGame();
+                            isGameOn = false;
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Invalid input!");
+                            break;
+                    }
                 }
+                while (isGameOn);
             }
             void AdditionGame(string message)
             {
-                
+
                 var random = new Random();
                 int firstNumber;
                 int secondNumber;
@@ -80,11 +94,14 @@ namespace MathGame
                     else
                     {
                         Console.WriteLine($"Wrong, the correct answer is: {firstNumber + secondNumber}. Next...");
+                        Console.ReadKey();
                     }
                 }
                 Console.Clear();
                 Console.WriteLine(message);
-                Console.WriteLine($"Final score: {score}");
+                Console.WriteLine($"Final score: {score}. Press any key to return to main menu...");
+                AddToHistory(score, "Addition");
+                Console.ReadKey();
             }
             void SubstractionGame(string message)
             {
@@ -117,7 +134,10 @@ namespace MathGame
                 }
                 Console.Clear();
                 Console.WriteLine(message);
-                Console.WriteLine($"Final score: {score}");
+                Console.WriteLine($"Final score: {score}. Press any key to return to main menu...");
+                AddToHistory(score, "Substraction");
+
+                Console.ReadKey();
             }
             void MultiplicationGame(string message)
             {
@@ -150,7 +170,10 @@ namespace MathGame
                 }
                 Console.Clear();
                 Console.WriteLine(message);
-                Console.WriteLine($"Final score: {score}");
+                Console.WriteLine($"Final score: {score}. Press any key to return to main menu...");
+                AddToHistory(score, "Multiplication");
+
+                Console.ReadKey();
             }
             void DivisionGame(string message)
             {
@@ -181,7 +204,10 @@ namespace MathGame
                 }
                 Console.Clear();
                 Console.WriteLine(message);
-                Console.WriteLine($"Final score: {score}");
+                Console.WriteLine($"Final score: {score}. Press any key to return to main menu...");
+                AddToHistory(score, "Division");
+
+                Console.ReadKey();
             }
             void QuitGame()
             {
@@ -207,7 +233,22 @@ namespace MathGame
 
                 return result;
             }
-
+            void GetGames()
+            {
+                Console.Clear();
+                Console.WriteLine("-Game History-");
+                foreach (var game in games)
+                {
+                    Console.WriteLine(game);
+                }
+                Console.WriteLine("--------------");
+                Console.WriteLine("Press any key to return to the menu...");
+                Console.ReadKey();
+            }
+            void AddToHistory(int gameScore, string gameType)
+            {
+                games.Add($"{DateTime.Now} - {gameType} - {gameScore} points");
+            }
         }
     }
 }
