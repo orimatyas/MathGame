@@ -21,8 +21,7 @@ Press any key to return to main menu");
                 {
                     case "d":
                         Console.Clear();
-                        Console.WriteLine("Select difficulty");
-                        Helpers.PrintGames();
+                        Helpers.DifficultyChoice(difficultyLevel);
                         break;
                     case "n":
                         Console.Clear();

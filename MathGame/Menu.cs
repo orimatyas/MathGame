@@ -3,7 +3,9 @@
     internal class Menu
     {
         GameEngine gameEngine = new();
+
         Options optionsMenu = new();
+
         internal void ShowMenu(string name, DateTime date)
         {
             Console.WriteLine($"Hello {name}. Today it's {date}. It's time to work on your math skills!\n");

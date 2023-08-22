@@ -42,6 +42,7 @@ namespace MathGame
             Console.ReadKey();
             Console.Clear();
         }
+
         internal void SubtractionGame(string message)
         {
             var random = new Random();
@@ -80,6 +81,7 @@ namespace MathGame
             Console.ReadKey();
             Console.Clear();
         }
+
         internal void MultiplicationGame(string message)
         {
             var random = new Random();
@@ -118,6 +120,7 @@ namespace MathGame
             Console.ReadKey();
             Console.Clear();
         }
+
         internal void DivisionGame(string message)
         {
             int score = 0;

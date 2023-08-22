@@ -14,8 +14,6 @@ namespace MathGame
             return name;
         }
 
-        internal static List<Game> games = new();
-
         internal static int[] GetDivisionNumbers()
         {
             var random = new Random();
@@ -34,6 +32,9 @@ namespace MathGame
 
             return result;
         }
+
+        internal static List<Game> games = new();
+        
         internal static void PrintGames()
         {
             Console.Clear();
@@ -47,6 +48,7 @@ namespace MathGame
             Console.ReadKey();
             Console.Clear();
         }
+
         internal static void AddToHistory(int gameScore, GameType gameType)
         {
             games.Add(new Game
@@ -56,6 +58,7 @@ namespace MathGame
                 Type = gameType
             });
         }
+
         internal static int questionNum = 3;
         internal static int QuestionNumbers()
         {
@@ -66,7 +69,6 @@ How many questions do you want to answer?");
             {
                 Console.WriteLine("Please enter a number");
                 num = Console.ReadLine();
-                Console.Clear();
             }
             questionNum = Convert.ToInt32(num);
             return questionNum;
@@ -125,6 +127,57 @@ How many questions do you want to answer?");
                 result = Console.ReadLine();
             }
             return result;
+        }
+
+        internal static int difficultyLevel = 1;
+
+        internal static void DifficultyChoice(int difficultyLevel)
+        {
+            Console.WriteLine(@"Select a difficulty level:
+1. Easy
+2. Medium
+3. Hard");
+
+            int choice = GetUserChoice();
+
+
+
+            switch (choice)
+            {
+                case 1:
+                    difficultyLevel = 1;
+                    break;
+                case 2:
+                    difficultyLevel = 2;
+                    break;
+                case 3:
+                    difficultyLevel = 3;
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please select a valid option.");
+                    break;
+            }
+        }
+
+
+        private static int GetUserChoice()
+        {
+            int choice;
+            bool isValidChoice = false;
+
+            do
+            {
+                Console.Write("Enter your choice: ");
+                isValidChoice = int.TryParse(Console.ReadLine(), out choice);
+
+                if (!isValidChoice || choice < 1 || choice > 3)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number.");
+                    isValidChoice = false;
+                }
+            } while (!isValidChoice);
+
+            return choice;
         }
     }
 }
