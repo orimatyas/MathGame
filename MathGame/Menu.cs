@@ -3,6 +3,7 @@
     internal class Menu
     {
         GameEngine gameEngine = new();
+        Options optionsMenu = new();
         internal void ShowMenu(string name, DateTime date)
         {
             Console.WriteLine($"Hello {name}. Today it's {date}. It's time to work on your math skills!\n");
@@ -11,24 +12,24 @@
 
             do
             {
-                Console.Clear();
                 Console.WriteLine(@"What do you want to practice? Please select from down below:
                     A - Addition
-                    S - Substraction
+                    S - Subtraction
                     M - Multiplication
                     D - Division
                     V - View games
+                    O - Options
                     Q - Quit program");
 
                 var gameSelected = Console.ReadLine();
-
+                Console.Clear();
                 switch (gameSelected.Trim().ToLower())
                 {
                     case "a":
                         gameEngine.AdditionGame("Addition game");
                         break;
                     case "s":
-                        gameEngine.SubstractionGame("Substraction game");
+                        gameEngine.SubtractionGame("Subtraction game");
                         break;
                     case "m":
                         gameEngine.MultiplicationGame("Multipication game");
@@ -39,6 +40,9 @@
                     case "v":
                         Helpers.PrintGames();
                         break;
+                    case "o":
+                        optionsMenu.OptionsMenu();
+                        break;
                     case "q":
                         Helpers.QuitGame();
                         isGameOn = false;
@@ -46,6 +50,8 @@
                     default:
                         Console.Clear();
                         Console.WriteLine("Invalid input!");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                 }
             }

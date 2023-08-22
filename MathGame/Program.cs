@@ -10,17 +10,10 @@ namespace MathGame
             
             var date = DateTime.Now;
             
-            string name = GetName();
+            string name = Helpers.GetName();
             
             menu.ShowMenu(name, date);
             
-            string GetName()
-            {
-                Console.WriteLine("Hello, \nPlease type your name:");
-                var name = Console.ReadLine();
-                Console.Clear();
-                return name;
-            }          
         }
     }
 }

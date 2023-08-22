@@ -1,4 +1,5 @@
-﻿namespace MathGame
+﻿using static MathGame.Model.Game;
+namespace MathGame
 {
     internal class GameEngine
     {
@@ -9,7 +10,8 @@
             int firstNumber;
             int secondNumber;
             int score = 0;
-            for (int i = 1; i < 5; i++)
+            int num = Helpers.questionNum;
+            for (int i = 0; i < num; i++)
             {
                 Console.Clear();
                 Console.WriteLine(message);
@@ -19,6 +21,12 @@
 
                 Console.WriteLine($"{firstNumber} + {secondNumber} = ?");
                 var result = Console.ReadLine();
+                while (string.IsNullOrEmpty(result) || !Int32.TryParse(result, out _))
+                {
+                    Console.WriteLine("Please enter a number");
+                    result = Console.ReadLine();
+                    Console.Clear();
+                }
 
                 if (int.Parse(result) == firstNumber + secondNumber)
                 {
@@ -35,16 +43,18 @@
             Console.Clear();
             Console.WriteLine(message);
             Console.WriteLine($"Final score: {score}. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, "Addition");
+            Helpers.AddToHistory(score, GameType.Addition);
             Console.ReadKey();
+            Console.Clear();
         }
-        internal void SubstractionGame(string message)
+        internal void SubtractionGame(string message)
         {
             var random = new Random();
             int firstNumber;
             int secondNumber;
             int score = 0;
-            for (int i = 1; i < 5; i++)
+            int num = Helpers.questionNum;
+            for (int i = 0; i < num; i++)
             {
                 Console.Clear();
                 Console.WriteLine(message);
@@ -54,7 +64,12 @@
 
                 Console.WriteLine($"{firstNumber} - {secondNumber} = ?");
                 var result = Console.ReadLine();
-
+                while (string.IsNullOrEmpty(result) || !Int32.TryParse(result, out _))
+                {
+                    Console.WriteLine("Please enter a number");
+                    result = Console.ReadLine();
+                    Console.Clear();
+                }
                 if (int.Parse(result) == firstNumber - secondNumber)
                 {
                     Console.WriteLine("Correct answer! Next...");
@@ -70,9 +85,9 @@
             Console.Clear();
             Console.WriteLine(message);
             Console.WriteLine($"Final score: {score}. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, "Substraction");
-
+            Helpers.AddToHistory(score, GameType.Subtraction);
             Console.ReadKey();
+            Console.Clear();
         }
         internal void MultiplicationGame(string message)
         {
@@ -80,7 +95,8 @@
             int firstNumber;
             int secondNumber;
             int score = 0;
-            for (int i = 1; i < 5; i++)
+            int num = Helpers.questionNum;
+            for (int i = 0; i < num; i++)
             {
                 Console.Clear();
                 Console.WriteLine(message);
@@ -90,7 +106,12 @@
 
                 Console.WriteLine($"{firstNumber} * {secondNumber} = ?");
                 var result = Console.ReadLine();
-
+                while (string.IsNullOrEmpty(result) || !Int32.TryParse(result, out _))
+                {
+                    Console.WriteLine("Please enter a number");
+                    result = Console.ReadLine();
+                    Console.Clear();
+                }
                 if (int.Parse(result) == firstNumber * secondNumber)
                 {
                     Console.WriteLine("Correct answer! Next...");
@@ -106,14 +127,15 @@
             Console.Clear();
             Console.WriteLine(message);
             Console.WriteLine($"Final score: {score}. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, "Multiplication");
-
+            Helpers.AddToHistory(score, GameType.Multiplication);
             Console.ReadKey();
+            Console.Clear();
         }
         internal void DivisionGame(string message)
         {
             int score = 0;
-            for (int i = 1; i < 5; i++)
+            int num = Helpers.questionNum;
+            for (int i = 0; i < num; i++)
             {
                 Console.Clear();
                 Console.WriteLine(message);
@@ -124,7 +146,12 @@
 
                 Console.WriteLine($"{firstNumber} / {secondNumber} = ?");
                 var result = Console.ReadLine();
-
+                while (string.IsNullOrEmpty(result) || !Int32.TryParse(result, out _))
+                {
+                    Console.WriteLine("Please enter a number");
+                    result = Console.ReadLine();
+                    Console.Clear() ;
+                }
                 if (int.Parse(result) == firstNumber / secondNumber)
                 {
                     Console.WriteLine("Correct answer! Next...");
@@ -140,9 +167,9 @@
             Console.Clear();
             Console.WriteLine(message);
             Console.WriteLine($"Final score: {score}. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, "Division");
-
+            Helpers.AddToHistory(score, GameType.Division);
             Console.ReadKey();
+            Console.Clear();
         }
     }
 }
