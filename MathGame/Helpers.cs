@@ -129,11 +129,12 @@ How many questions do you want to answer?");
             return result;
         }
 
-        internal static int difficultyLevel = 1;
+        internal static string difficultyLevel = "Easy";
 
-        internal static void DifficultyChoice(int difficultyLevel)
+        internal static void DifficultyChoice()
         {
-            Console.WriteLine(@"Select a difficulty level:
+            Console.WriteLine($@"Selected difficulty level: {difficultyLevel}
+Select a difficulty level:
 1. Easy
 2. Medium
 3. Hard");
@@ -141,26 +142,24 @@ How many questions do you want to answer?");
             int choice = GetUserChoice();
 
 
-
             switch (choice)
             {
                 case 1:
-                    difficultyLevel = 1;
+                    difficultyLevel = "Easy";
                     break;
                 case 2:
-                    difficultyLevel = 2;
+                    difficultyLevel = "Medium";
                     break;
                 case 3:
-                    difficultyLevel = 3;
+                    difficultyLevel = "Hard";
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please select a valid option.");
                     break;
             }
         }
-
-
-        private static int GetUserChoice()
+        
+        static int GetUserChoice()
         {
             int choice;
             bool isValidChoice = false;
@@ -179,5 +178,7 @@ How many questions do you want to answer?");
 
             return choice;
         }
+
     }
+    
 }

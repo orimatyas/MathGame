@@ -21,7 +21,7 @@ Press any key to return to main menu");
                 {
                     case "d":
                         Console.Clear();
-                        Helpers.DifficultyChoice(difficultyLevel);
+                        Helpers.DifficultyChoice();
                         break;
                     case "n":
                         Console.Clear();
