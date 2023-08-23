@@ -60,6 +60,7 @@ namespace MathGame
         }
 
         internal static int questionNum = 3;
+
         internal static int QuestionNumbers()
         {
             Console.WriteLine($@"Current number of questions {questionNum}
