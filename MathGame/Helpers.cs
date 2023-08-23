@@ -6,6 +6,13 @@ namespace MathGame
 {
     internal class Helpers
     {
+        internal static List<Game> games = new();
+        internal static int questionNum = 3;
+        internal static string difficultyLevel = "Easy";
+        internal static int difficultyCap = 10;
+        internal static int bigNum = 100;
+        internal static int smallNum = 50;
+
         internal static string GetName()
         {
             Console.WriteLine("Hello, \nPlease type your name:");
@@ -13,9 +20,6 @@ namespace MathGame
             Console.Clear();
             return name;
         }
-
-        internal static int bigNum = 100;
-        internal static int smallNum = 50;
 
         internal static int[] GetDivisionNumbers()
         {
@@ -37,28 +41,6 @@ namespace MathGame
             return result;
         }
 
-        private static int GetDivisionCaps()
-        {
-            switch (difficultyCap)
-            {
-                case 10:
-                    bigNum = 100;
-                    smallNum = 50;
-                    break;
-                case 100:
-                    bigNum = 500;
-                    smallNum = 350;
-                    break;
-                case 1000:
-                    bigNum = 1000;
-                    smallNum = 750;
-                    break;
-            }
-            return bigNum;
-            return smallNum;
-        }
-
-        internal static List<Game> games = new();
 
         internal static void PrintGames()
         {
@@ -66,7 +48,7 @@ namespace MathGame
             Console.WriteLine("--Game History--");
             foreach (var game in games)
             {
-                Console.WriteLine($"{game.Date} - {game.Type} - {game.Score} pts");
+                Console.WriteLine($"{game.Date} - {game.Type} - {game.Score} pts - {game.TimeSpan} sec");
             }
             Console.WriteLine("----------------");
             Console.WriteLine("Press any key to return to the menu...");
@@ -74,17 +56,17 @@ namespace MathGame
             Console.Clear();
         }
 
-        internal static void AddToHistory(int gameScore, GameType gameType)
+        internal static void AddToHistory(int gameScore, GameType gameType, TimeSpan gameTime)
         {
             games.Add(new Game
             {
                 Date = DateTime.Now,
                 Score = gameScore,
+                TimeSpan = gameTime,
                 Type = gameType
             });
         }
 
-        internal static int questionNum = 3;
 
         internal static int QuestionNumbers()
         {
@@ -155,25 +137,27 @@ How many questions do you want to answer?");
             return result;
         }
 
-        internal static string difficultyLevel = "Easy";
-        
-        internal static int difficultyCap = 10;
-
-        internal static int GetDifficultyCap()
+       
+        internal static void GetDifficultyCap()
         {
             switch (difficultyLevel)
             {
                 case "Easy":
                     difficultyCap = 10;
+                    bigNum = 100;
+                    smallNum = 50;
                     break;
                 case "Medium":
                     difficultyCap = 100;
+                    bigNum = 500;
+                    smallNum = 350;
                     break;
                 case "Hard":
                     difficultyCap = 1000;
+                    bigNum = 1000;
+                    smallNum = 750;
                     break;
             }
-            return difficultyCap;
         }
 
         internal static void DifficultyChoice()
@@ -191,22 +175,21 @@ Select a difficulty level:
             {
                 case 1:
                     difficultyLevel = "Easy";
-                    GetDifficultyCap();
                     break;
                 case 2:
                     difficultyLevel = "Medium";
-                    GetDifficultyCap();
                     break;
                 case 3:
                     difficultyLevel = "Hard";
-                    GetDifficultyCap();
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please select a valid option.");
                     break;
             }
+            GetDifficultyCap();
+
         }
-        
+
         static int GetUserChoice()
         {
             int choice;

@@ -8,12 +8,12 @@
             do
             {
                 Console.Clear();
-                Console.WriteLine(@"Options:
-D - Difficulty
-N - Number of questions
-C - Color of background
+                Console.WriteLine("Options:\n"+
+                                   "D - Difficulty\n"+
+                                   "N - Number of questions\n"+
+                                   "C - Color of background\n\n"+
 
-Press Enter to return to main menu");
+                                   "Press Enter to return to main menu");
 
                 var optionSelected = Console.ReadLine();
 
