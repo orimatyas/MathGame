@@ -13,7 +13,7 @@ D - Difficulty
 N - Number of questions
 C - Color of background
 
-Press any key to return to main menu");
+Press Enter to return to main menu");
 
                 var optionSelected = Console.ReadLine();
 

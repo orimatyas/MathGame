@@ -16,8 +16,8 @@ namespace MathGame
                 Console.Clear();
                 Console.WriteLine(message);
 
-                firstNumber = random.Next(0, 10);
-                secondNumber = random.Next(0, 10);
+                firstNumber = random.Next(0, Helpers.difficultyCap);
+                secondNumber = random.Next(0, Helpers.difficultyCap);
 
                 Console.WriteLine($"{firstNumber} + {secondNumber} = ?");
                 var result = Console.ReadLine();
@@ -55,8 +55,8 @@ namespace MathGame
                 Console.Clear();
                 Console.WriteLine(message);
 
-                firstNumber = random.Next(0, 10);
-                secondNumber = random.Next(0, 10);
+                firstNumber = random.Next(0, Helpers.difficultyCap);
+                secondNumber = random.Next(0, Helpers.difficultyCap);
 
                 Console.WriteLine($"{firstNumber} - {secondNumber} = ?");
                 var result = Console.ReadLine();
@@ -94,8 +94,8 @@ namespace MathGame
                 Console.Clear();
                 Console.WriteLine(message);
 
-                firstNumber = random.Next(0, 10);
-                secondNumber = random.Next(0, 10);
+                firstNumber = random.Next(0, Helpers.difficultyCap);
+                secondNumber = random.Next(0, Helpers.difficultyCap);
 
                 Console.WriteLine($"{firstNumber} * {secondNumber} = ?");
                 var result = Console.ReadLine();

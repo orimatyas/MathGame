@@ -14,17 +14,21 @@ namespace MathGame
             return name;
         }
 
+        internal static int bigNum = 100;
+        internal static int smallNum = 50;
+
         internal static int[] GetDivisionNumbers()
         {
+            GetDivisionCaps();
             var random = new Random();
-            int firstNumber = random.Next(1, 100);
-            int secondNumber = random.Next(1, 50);
+            int firstNumber = random.Next(1, bigNum);
+            int secondNumber = random.Next(1, smallNum);
             var result = new int[2];
 
             while (firstNumber % secondNumber != 0)
             {
-                firstNumber = random.Next(1, 100);
-                secondNumber = random.Next(2, 50);
+                firstNumber = random.Next(1, bigNum);
+                secondNumber = random.Next(2, smallNum);
             }
 
             result[0] = firstNumber;
@@ -33,8 +37,29 @@ namespace MathGame
             return result;
         }
 
+        private static int GetDivisionCaps()
+        {
+            switch (difficultyCap)
+            {
+                case 10:
+                    bigNum = 100;
+                    smallNum = 50;
+                    break;
+                case 100:
+                    bigNum = 500;
+                    smallNum = 350;
+                    break;
+                case 1000:
+                    bigNum = 1000;
+                    smallNum = 750;
+                    break;
+            }
+            return bigNum;
+            return smallNum;
+        }
+
         internal static List<Game> games = new();
-        
+
         internal static void PrintGames()
         {
             Console.Clear();
@@ -60,6 +85,7 @@ namespace MathGame
         }
 
         internal static int questionNum = 3;
+
         internal static int QuestionNumbers()
         {
             Console.WriteLine($@"Current number of questions {questionNum}
@@ -130,6 +156,25 @@ How many questions do you want to answer?");
         }
 
         internal static string difficultyLevel = "Easy";
+        
+        internal static int difficultyCap = 10;
+
+        internal static int GetDifficultyCap()
+        {
+            switch (difficultyLevel)
+            {
+                case "Easy":
+                    difficultyCap = 10;
+                    break;
+                case "Medium":
+                    difficultyCap = 100;
+                    break;
+                case "Hard":
+                    difficultyCap = 1000;
+                    break;
+            }
+            return difficultyCap;
+        }
 
         internal static void DifficultyChoice()
         {
@@ -146,12 +191,15 @@ Select a difficulty level:
             {
                 case 1:
                     difficultyLevel = "Easy";
+                    GetDifficultyCap();
                     break;
                 case 2:
                     difficultyLevel = "Medium";
+                    GetDifficultyCap();
                     break;
                 case 3:
                     difficultyLevel = "Hard";
+                    GetDifficultyCap();
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please select a valid option.");
