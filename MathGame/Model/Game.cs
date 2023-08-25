@@ -15,6 +15,7 @@ internal class Game
         Addition,
         Subtraction,
         Multiplication,
-        Division
+        Division,
+        Random
     }
 }

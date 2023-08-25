@@ -293,7 +293,7 @@ namespace MathGame
             Console.Clear();
             Console.WriteLine(message);
             Console.WriteLine($"Final score: {score}. \nFinal time: {elapsed.TotalSeconds} seconds. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, GameType.Addition, elapsed);
+            Helpers.AddToHistory(score, GameType.Random, elapsed);
             stopwatch.Reset();
             Console.ReadKey();
             Console.Clear();
