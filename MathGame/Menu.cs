@@ -42,6 +42,7 @@ Q - Quit program");
                         break;
                     case "r":
                         gameEngine.RandomGame("Random game");
+                        break;
                     case "v":
                         Helpers.PrintGames();
                         break;

@@ -23,7 +23,6 @@ namespace MathGame
 
         internal static int[] GetDivisionNumbers()
         {
-            GetDivisionCaps();
             var random = new Random();
             int firstNumber = random.Next(1, bigNum);
             int secondNumber = random.Next(1, smallNum);
@@ -91,7 +90,6 @@ How many questions do you want to answer?");
                 case "1":
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.ForegroundColor = ConsoleColor.White;
-
                     break;
                 case "2":
                     Console.BackgroundColor = ConsoleColor.White;
