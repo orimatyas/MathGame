@@ -6,6 +6,13 @@ namespace MathGame
 {
     internal class Helpers
     {
+        internal static List<Game> games = new();
+        internal static int questionNum = 3;
+        internal static string difficultyLevel = "Easy";
+        internal static int difficultyCap = 10;
+        internal static int bigNum = 100;
+        internal static int smallNum = 50;
+
         internal static string GetName()
         {
             Console.WriteLine("Hello, \nPlease type your name:");
@@ -16,15 +23,16 @@ namespace MathGame
 
         internal static int[] GetDivisionNumbers()
         {
+            GetDivisionCaps();
             var random = new Random();
-            int firstNumber = random.Next(1, 100);
-            int secondNumber = random.Next(1, 50);
+            int firstNumber = random.Next(1, bigNum);
+            int secondNumber = random.Next(1, smallNum);
             var result = new int[2];
 
             while (firstNumber % secondNumber != 0)
             {
-                firstNumber = random.Next(1, 100);
-                secondNumber = random.Next(2, 50);
+                firstNumber = random.Next(1, bigNum);
+                secondNumber = random.Next(2, smallNum);
             }
 
             result[0] = firstNumber;
@@ -33,15 +41,14 @@ namespace MathGame
             return result;
         }
 
-        internal static List<Game> games = new();
-        
+
         internal static void PrintGames()
         {
             Console.Clear();
             Console.WriteLine("--Game History--");
             foreach (var game in games)
             {
-                Console.WriteLine($"{game.Date} - {game.Type} - {game.Score} pts");
+                Console.WriteLine($"{game.Date} - {game.Type} - {game.Score} pts - {game.TimeSpan} sec");
             }
             Console.WriteLine("----------------");
             Console.WriteLine("Press any key to return to the menu...");
@@ -49,17 +56,17 @@ namespace MathGame
             Console.Clear();
         }
 
-        internal static void AddToHistory(int gameScore, GameType gameType)
+        internal static void AddToHistory(int gameScore, GameType gameType, TimeSpan gameTime)
         {
             games.Add(new Game
             {
                 Date = DateTime.Now,
                 Score = gameScore,
+                TimeSpan = gameTime,
                 Type = gameType
             });
         }
 
-        internal static int questionNum = 3;
 
         internal static int QuestionNumbers()
         {
@@ -130,7 +137,28 @@ How many questions do you want to answer?");
             return result;
         }
 
-        internal static string difficultyLevel = "Easy";
+       
+        internal static void GetDifficultyCap()
+        {
+            switch (difficultyLevel)
+            {
+                case "Easy":
+                    difficultyCap = 10;
+                    bigNum = 100;
+                    smallNum = 50;
+                    break;
+                case "Medium":
+                    difficultyCap = 100;
+                    bigNum = 500;
+                    smallNum = 350;
+                    break;
+                case "Hard":
+                    difficultyCap = 1000;
+                    bigNum = 1000;
+                    smallNum = 750;
+                    break;
+            }
+        }
 
         internal static void DifficultyChoice()
         {
@@ -158,8 +186,10 @@ Select a difficulty level:
                     Console.WriteLine("Invalid choice. Please select a valid option.");
                     break;
             }
+            GetDifficultyCap();
+
         }
-        
+
         static int GetUserChoice()
         {
             int choice;

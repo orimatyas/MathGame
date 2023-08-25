@@ -15,13 +15,14 @@
             do
             {
                 Console.WriteLine(@"What do you want to practice? Please select from down below:
-                    A - Addition
-                    S - Subtraction
-                    M - Multiplication
-                    D - Division
-                    V - View games
-                    O - Options
-                    Q - Quit program");
+A - Addition
+S - Subtraction
+M - Multiplication
+D - Division
+R - Random
+V - View games
+O - Options
+Q - Quit program");
 
                 var gameSelected = Console.ReadLine();
                 Console.Clear();
@@ -39,6 +40,8 @@
                     case "d":
                         gameEngine.DivisionGame("Division game");
                         break;
+                    case "r":
+                        gameEngine.RandomGame("Random game");
                     case "v":
                         Helpers.PrintGames();
                         break;

@@ -1,8 +1,10 @@
-﻿using static MathGame.Model.Game;
+﻿using System.Diagnostics;
+using static MathGame.Model.Game;
 namespace MathGame
 {
     internal class GameEngine
     {
+        Stopwatch stopwatch = new Stopwatch();
         internal void AdditionGame(string message)
         {
 
@@ -10,17 +12,18 @@ namespace MathGame
             int firstNumber;
             int secondNumber;
             int score = 0;
-            int num = Helpers.questionNum;
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < Helpers.questionNum; i++)
             {
                 Console.Clear();
                 Console.WriteLine(message);
 
-                firstNumber = random.Next(0, 10);
-                secondNumber = random.Next(0, 10);
+                firstNumber = random.Next(0, Helpers.difficultyCap);
+                secondNumber = random.Next(0, Helpers.difficultyCap);
 
                 Console.WriteLine($"{firstNumber} + {secondNumber} = ?");
+                stopwatch.Start();
                 var result = Console.ReadLine();
+                stopwatch.Stop();
                 result = Helpers.ValidateResult(result);
 
                 if (int.Parse(result) == firstNumber + secondNumber)
@@ -35,10 +38,11 @@ namespace MathGame
                     Console.ReadKey();
                 }
             }
+            TimeSpan elapsed = stopwatch.Elapsed;
             Console.Clear();
             Console.WriteLine(message);
-            Console.WriteLine($"Final score: {score}. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, GameType.Addition);
+            Console.WriteLine($"Final score: {score}. \nFinal time: {elapsed.TotalSeconds} seconds. \nPress any key to return to main menu...");
+            Helpers.AddToHistory(score, GameType.Addition, elapsed);
             Console.ReadKey();
             Console.Clear();
         }
@@ -49,17 +53,18 @@ namespace MathGame
             int firstNumber;
             int secondNumber;
             int score = 0;
-            int num = Helpers.questionNum;
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < Helpers.questionNum; i++)
             {
                 Console.Clear();
                 Console.WriteLine(message);
 
-                firstNumber = random.Next(0, 10);
-                secondNumber = random.Next(0, 10);
+                firstNumber = random.Next(0, Helpers.difficultyCap);
+                secondNumber = random.Next(0, Helpers.difficultyCap);
 
                 Console.WriteLine($"{firstNumber} - {secondNumber} = ?");
+                stopwatch.Start();
                 var result = Console.ReadLine();
+                stopwatch.Stop();
                 result = Helpers.ValidateResult(result);
 
                 if (int.Parse(result) == firstNumber - secondNumber)
@@ -74,10 +79,11 @@ namespace MathGame
                     Console.ReadKey();
                 }
             }
+            TimeSpan elapsed = stopwatch.Elapsed;
             Console.Clear();
             Console.WriteLine(message);
-            Console.WriteLine($"Final score: {score}. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, GameType.Subtraction);
+            Console.WriteLine($"Final score: {score}. \nFinal time: {elapsed.TotalSeconds} seconds. \nPress any key to return to main menu...");
+            Helpers.AddToHistory(score, GameType.Subtraction, elapsed);
             Console.ReadKey();
             Console.Clear();
         }
@@ -88,17 +94,18 @@ namespace MathGame
             int firstNumber;
             int secondNumber;
             int score = 0;
-            int num = Helpers.questionNum;
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < Helpers.questionNum; i++)
             {
                 Console.Clear();
                 Console.WriteLine(message);
 
-                firstNumber = random.Next(0, 10);
-                secondNumber = random.Next(0, 10);
+                firstNumber = random.Next(0, Helpers.difficultyCap);
+                secondNumber = random.Next(0, Helpers.difficultyCap);
 
                 Console.WriteLine($"{firstNumber} * {secondNumber} = ?");
+                stopwatch.Start();
                 var result = Console.ReadLine();
+                stopwatch.Stop();
                 result = Helpers.ValidateResult(result);
 
                 if (int.Parse(result) == firstNumber * secondNumber)
@@ -113,10 +120,11 @@ namespace MathGame
                     Console.ReadKey();
                 }
             }
+            TimeSpan elapsed = stopwatch.Elapsed;
             Console.Clear();
             Console.WriteLine(message);
-            Console.WriteLine($"Final score: {score}. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, GameType.Multiplication);
+            Console.WriteLine($"Final score: {score}. \nFinal time: {elapsed.TotalSeconds} seconds. \nPress any key to return to main menu...");
+            Helpers.AddToHistory(score, GameType.Multiplication, elapsed);
             Console.ReadKey();
             Console.Clear();
         }
@@ -124,8 +132,7 @@ namespace MathGame
         internal void DivisionGame(string message)
         {
             int score = 0;
-            int num = Helpers.questionNum;
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < Helpers.questionNum; i++)
             {
                 Console.Clear();
                 Console.WriteLine(message);
@@ -135,7 +142,9 @@ namespace MathGame
                 int secondNumber = divisionNumbers[1];
 
                 Console.WriteLine($"{firstNumber} / {secondNumber} = ?");
+                stopwatch.Start();
                 var result = Console.ReadLine();
+                stopwatch.Stop();
                 result = Helpers.ValidateResult(result);
 
                 if (int.Parse(result) == firstNumber / secondNumber)
@@ -150,12 +159,18 @@ namespace MathGame
                     Console.ReadKey();
                 }
             }
+            TimeSpan elapsed = stopwatch.Elapsed;
             Console.Clear();
             Console.WriteLine(message);
-            Console.WriteLine($"Final score: {score}. \nPress any key to return to main menu...");
-            Helpers.AddToHistory(score, GameType.Division);
+            Console.WriteLine($"Final score: {score}. \nFinal time: {elapsed.TotalSeconds} seconds. \nPress any key to return to main menu...");
+            Helpers.AddToHistory(score, GameType.Division, elapsed);
             Console.ReadKey();
             Console.Clear();
+        }
+
+        internal void RandomGame(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
